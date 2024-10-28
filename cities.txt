@@ -1,0 +1,7 @@
+Paris, Lyon, 240, Marseille, 460, Nantes, 210, Toulouse, 410
+Lyon, Paris, 240, Marseille, 190, Bordeaux, 320, Nice, 270, Toulouse, 270
+Marseille, Paris, 460, Lyon, 190, Nice, 120, Bordeaux, 400, Toulouse, 230
+Bordeaux, Lyon, 320, Marseille, 400, Nantes, 230, Toulouse, 150
+Nantes, Paris, 210, Bordeaux, 230
+Nice, Lyon, 270, Marseille, 120
+Toulouse, Paris, 410, Lyon, 270, Marseille, 230, Bordeaux, 150
