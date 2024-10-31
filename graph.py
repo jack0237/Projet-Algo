@@ -14,7 +14,7 @@ def create_graph(fichier):
 
     return graphe
 
-def afficher_graphe(graphe):
+def display_graph(graphe):
     print("Villes (nœuds) :")
     print(graphe.nodes())
 
@@ -23,4 +23,5 @@ def afficher_graphe(graphe):
         print(f"{u} -- {v}, temps: {data['weight']} minutes")
  
 graphe = create_graph(cities.txt)
-afficher_graphe(graphe)
+display_graph(graphe)
+
