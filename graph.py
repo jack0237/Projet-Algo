@@ -1,27 +1,42 @@
-import networkx as nx
+from node import Node
+from edge import Edge
 
-def create_graph(fichier):
-    graphe = nx.Graph()
+class Graph:
+    def __init__(self):
+        self.nodesList = {}
 
-    with open(fichier, 'r') as f:
-        for ligne in f:
-            elements = ligne.strip().split(', ') 
-            ville_source = elements[0] 
-            for i in range(1, len(elements) - 1, 2):
-                ville_adj = elements[i] 
-                temps = int(elements[i + 1])
-                graphe.add_edge(ville_source, ville_adj, weight=temps)
+    def init_graph(self, file_path):
+        with open(file_path, 'r') as file:
+            for line in file:
+                parts = line.strip().split(', ')
+                start_node = parts[0]
+                
+                if start_node not in self.nodesList:
+                    self.nodesList[start_node] = Node(start_node)
 
-    return graphe
+                i = 1
+                while i < len(parts) - 1:
+                    destination_node = parts[i]
+                    distance = int(parts[i + 1])
 
-def display_graph(graphe):
-    print("Villes (nœuds) :")
-    print(graphe.nodes())
+                    if start_node != destination_node:
+                        if destination_node not in self.nodesList:
+                            self.nodesList[destination_node] = Node(destination_node)
 
-    print("\nConnexions (arêtes) avec temps de trajet :")
-    for u, v, data in graphe.edges(data=True):
-        print(f"{u} -- {v}, temps: {data['weight']} minutes")
+                        edge = Edge(self.nodesList[start_node], self.nodesList[destination_node], distance)
  
-graphe = create_graph(cities.txt)
-display_graph(graphe)
+                        if not self.nodesList[start_node].has_edge_to(destination_node):
+                            self.nodesList[start_node].add_edge(edge)
+                        if not self.nodesList[destination_node].has_edge_to(start_node):
+                            reverse_edge = Edge(self.nodesList[destination_node], self.nodesList[start_node], distance)
+                            self.nodesList[destination_node].add_edge(reverse_edge)
+                    
+                    i += 2
 
+    def get_nodes(self):
+        return list(self.nodesList.keys())
+
+    def get_edges(self, node_name):
+        if node_name in self.nodesList:
+            return [(edge.to_node.name, edge.distance) for edge in self.nodesList[node_name].edges]
+        return None
