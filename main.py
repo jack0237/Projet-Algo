@@ -1,12 +1,15 @@
 from graph import Graph
+from articles_to_deliver import ArticlesToDeliver
 
 class Main:
-    def __init__(self, file_path):
+    def __init__(self, cities_file, articles_file):
         self.graph = Graph()
-        self.file_path = file_path
+        self.articles_to_deliver = ArticlesToDeliver()
+        self.cities_file = cities_file
+        self.articles_file = articles_file
 
     def run(self):
-        self.graph.init_graph(self.file_path)
+        self.graph.init_graph(self.cities_file)
 
         print("Nodes in the graph:")
         for node_name in self.graph.get_nodes():
@@ -22,6 +25,12 @@ class Main:
             else:
                 print(f"No edges found for node {node_name}")
 
+        self.articles_to_deliver.init_articles(self.articles_file)
+
+        print("\nArticles to deliver:")
+        for article in self.articles_to_deliver.get_articles():
+            print(f"- {article.name} (Truck Type: {article.truck_type}) to {article.destination}")
+
 if __name__ == "__main__":
-    main_program = Main('cities.txt')
+    main_program = Main('cities.txt', 'articles.txt')
     main_program.run()
