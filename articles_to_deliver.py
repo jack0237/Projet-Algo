@@ -7,22 +7,24 @@ class ArticlesToDeliver:
     def init_articles(self, file_path):
         with open(file_path, 'r') as file:
             for line in file:
+                
                 parts = line.strip().split(', ')
                 
-                # Vérifie qu'il y a bien trois parties pour chaque ligne
                 if len(parts) == 3:
+                    name = parts[0]
                     try:
-                        name = parts[0]
-                        truck_type = int(parts[1].split(': ')[1])  # Assure que c'est un nombre entier (1 ou 2)
+                        truck_type = int(parts[1].split(': ')[1])  
                         destination = parts[2]
                         
-                        # Crée l'objet Article et l'ajoute à la liste
-                        article = Article(name, truck_type, destination)
-                        self.articleList.append(article)
+                        if truck_type in [1, 2]:
+                            article = Article(name, truck_type, destination)
+                            self.articleList.append(article)
+                        else:
+                            print(f"TruckType incorrect pour l'article '{name}': doit être 1 ou 2, trouvé {truck_type}")
                     except (IndexError, ValueError) as e:
                         print(f"Ligne mal formatée ignorée: '{line.strip()}' - Erreur: {e}")
                 else:
                     print(f"Ligne mal formatée ignorée: '{line.strip()}'")
-                    
+
     def get_articles(self):
         return self.articleList

@@ -11,7 +11,8 @@ class Main:
     def run(self):
         self.graph.init_graph(self.cities_file)
 
-        print("Nodes in the graph:")
+        # tests
+        """print("Nodes in the graph:")
         for node_name in self.graph.get_nodes():
             print(f"- {node_name}")
 
@@ -23,13 +24,14 @@ class Main:
                 for to_node, distance in edges:
                     print(f"  - to {to_node}, distance: {distance} km")
             else:
-                print(f"No edges found for node {node_name}")
+                print(f"No edges found for node {node_name}")"""
 
         self.articles_to_deliver.init_articles(self.articles_file)
 
-        print("\nArticles to deliver:")
+        # tests
+        """print("\nArticles to deliver:")
         for article in self.articles_to_deliver.get_articles():
-            print(f"- {article.name} (Truck Type: {article.truck_type}) to {article.destination}")
+            print(f"- {article.name} (Truck Type: {article.truck_type}) to {article.destination}")"""
 
 if __name__ == "__main__":
     main_program = Main('cities.txt', 'articles.txt')
