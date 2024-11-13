@@ -1,0 +1,5 @@
+Paris
+Truck 1, TruckType: 2
+Truck 2, TruckType: 1
+Truck 3, TruckType: 2
+Truck 4, TruckType: 1

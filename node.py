@@ -10,3 +10,6 @@ class Node:
 
     def has_edge_to(self, node_name):
         return any(edge.to_node.name == node_name for edge in self.edges)
+
+    def __str__(self):
+        return self.name
