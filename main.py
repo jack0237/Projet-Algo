@@ -37,10 +37,11 @@ class Main:
             print(f"- {article.name} (Truck Type: {article.truck_type}) to {article.destination}")"""
         
         self.fleet.init_fleet(self.fleet_file)
-        print(f"Point de départ : {self.fleet.starting_point}")
+        """print(f"Point de départ : {self.fleet.starting_point}")
         print("Flotte de camions initialisée :")
         for truck in self.fleet.truckList:
-            print(truck)
+            print(truck)"""
+        
 
 if __name__ == "__main__":
     main_program = Main('cities.txt', 'articles.txt', 'fleet.txt')
